@@ -10,6 +10,7 @@ public class GamePadInput : BaseInput
     public void InitGamePad(Gamepad _gamePad)
     {
         gamePad = _gamePad;
+        iNPUT = INPUT.GAMEPAD;
     }
 
     private void OnEnable()

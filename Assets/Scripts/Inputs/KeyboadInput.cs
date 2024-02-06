@@ -11,6 +11,7 @@ public class KeyboadInput : BaseInput
     public void InitKeyboard(Keyboard _keyboard)
     {
         keyboard = _keyboard;
+        iNPUT = INPUT.KEYBOARD;
     }
 
     private void OnEnable()

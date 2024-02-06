@@ -18,6 +18,8 @@ public class BaseInput : MonoBehaviour
 
     protected bool canMove = true;
 
+    protected INPUT iNPUT;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -47,6 +49,14 @@ public class BaseInput : MonoBehaviour
         }
     }
 
+    public virtual void OpenMenu(InputAction.CallbackContext context)
+    {
+        if (context.performed && canMove)
+        {
+            InputsActions.OpenActionMenu?.Invoke();
+        }
+    }
+
     public void BlockInput()
     {
         canMove = false;
@@ -55,5 +65,10 @@ public class BaseInput : MonoBehaviour
     public void ReleaseInput()
     {
         canMove = true;
+    }
+
+    public INPUT GetTypeInput()
+    {
+        return iNPUT;
     }
 }
