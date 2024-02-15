@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrazyApplesManager : MonoBehaviour
+public class CrazyApplesManager : MiniGameManager
 {
     [SerializeField]
     private GameObject pcPlayerPrefab;
@@ -21,6 +21,7 @@ public class CrazyApplesManager : MonoBehaviour
 
     private List<GamePlayPlayer> players = new List<GamePlayPlayer>();
 
+
     private void OnEnable()
     {
         PlayerActions.OnPlayerDie += OnPlayerDie;
@@ -33,28 +34,10 @@ public class CrazyApplesManager : MonoBehaviour
 
     public void Awake()
     {
-        foreach (BaseInput bI in InputManager.instance.GetPlayers())
-        {
-            CreatePlayer(bI);
-        }
+        InitMiniGame();
     }
 
-    private void CreatePlayer(BaseInput _baseInput)
-    {
-        switch (_baseInput.GetTypeInput())
-        {
-            case INPUT.KEYBOARD:
-                InstancePlayer(pcPlayerPrefab);
-                break;
-            case INPUT.GAMEPAD:
-                InstancePlayer(gamePadPlayerPrefab);
-                break;
-            case INPUT.JOYSTICK:
-                break;
-        }
-    }
-
-    private void InstancePlayer(GameObject _prefab)
+    protected override void InstancePlayer(GameObject _prefab, BaseInput _baseInput)
     {
         GameObject currentPlayer = Instantiate(_prefab);
         int indexPos = Random.Range(0, initPositions.Count);
@@ -63,7 +46,7 @@ public class CrazyApplesManager : MonoBehaviour
         GameObject avatar = Instantiate(caniAvatarPrefab);
         avatar.GetComponent<PlayerAttachment>().InitAvatar(currentPlayer.transform);
         GamePlayPlayer player = currentPlayer.GetComponent<GamePlayPlayer>();
-        player.IniPlayer(avatar);
+        //player.IniPlayer(avatar);
         players.Add(player);
     }
 

@@ -6,85 +6,65 @@ using UnityEngine;
 public class GamePlayPlayer : MonoBehaviour
 {
     [SerializeField]
-    protected float movSpeed, jumpSpeed, limitSpeed, repulsiveForce;
+    protected float movSpeed, jumpSpeed, limitSpeed;
 
-    [SerializeField]
-    private GameObject ptcPrefab;
-
-    protected Rigidbody rigidbody;
+    protected Rigidbody rB;
 
     protected bool canMove = true;
 
-    protected GameObject avatar;
+    protected BaseInput playerInput;
 
-    private void Awake()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
+    protected Vector3 dir;
 
-    public virtual void IniPlayer(GameObject _avatar)
+
+    public virtual void SetUp(BaseInput _baseInput)
     {
-        avatar = _avatar;
+        rB = GetComponent<Rigidbody>();
+        playerInput = _baseInput;
+        playerInput.SetMoveAction(MovePlayer);
+        playerInput.SetEnterAction(JumpPlayer);
+        playerInput.SetStartAction(StartMovePlayer);
+        playerInput.SetEndMoveAction(EndMovePlayer);
     }
 
     protected virtual void MovePlayer(Vector2 vector)
     {
         Vector3 dir = new Vector3(vector.x, 0.0f, vector.y);
         if (canMove && MovementAccepted(dir))
-            rigidbody.AddForce(dir * movSpeed, ForceMode.Impulse);
+            rB.AddForce(dir * movSpeed, ForceMode.Impulse);
+    }
+
+    protected virtual void StartMovePlayer()
+    {
+        canMove = true;
+    }
+
+    protected virtual void EndMovePlayer()
+    {
+        canMove = false;
     }
 
     protected virtual void JumpPlayer()
     {
         if(canMove)
-            rigidbody.AddForce(jumpSpeed * Vector3.up, ForceMode.Impulse);
+            rB.AddForce(jumpSpeed * Vector3.up, ForceMode.Impulse);
     }
 
     protected virtual bool MovementAccepted(Vector3 dir)
     {
-        return rigidbody.velocity.magnitude < limitSpeed;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("LostZone"))
-        {
-            CrazyApplesSounds.instance.PlaySound(C_A_SOUNDS.FALLING);
-            // Asignar puntos etc...
-            PlayerActions.OnPlayerDie(this);
-        }
+        return rB.velocity.magnitude < limitSpeed;
     }
 
     public void OnDiePlayer()
     {
-        Destroy(avatar);
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (canMove)
         {
-            CrazyApplesSounds.instance.PlaySound(C_A_SOUNDS.IMPACT);
-
-            GameObject ptc = Instantiate(ptcPrefab);
-            ptc.transform.position = collision.GetContact(0).point;
-
-            Vector3 dir = collision.transform.position - transform.position;
-            rigidbody.velocity = Vector3.zero;
-            rigidbody.AddForce(-dir * repulsiveForce, ForceMode.Force);
-        }
-        else if (collision.gameObject.CompareTag("Platform"))
-        {
-            canMove = true;
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            canMove = false;
+            rB.velocity = dir * movSpeed;
         }
     }
 }

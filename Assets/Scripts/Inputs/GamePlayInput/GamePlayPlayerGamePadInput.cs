@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class GamePlayPlayerGamePadInput : BaseInput
 {
     private Gamepad gamePad;
+
     public void InitGamePad(Gamepad _gamePad)
     {
         gamePad = _gamePad;
@@ -17,9 +19,9 @@ public class GamePlayPlayerGamePadInput : BaseInput
         if (inputAction == null)
         {
             inputAction = new Inputs();
-            inputAction.GamePlayGamePad.MovGp.performed += Move;
-            inputAction.GamePlayGamePad.ActionGp.performed += Enter;
-            inputAction.GamePlayGamePad.MenuGp.performed += OpenMenu;
+            //inputAction.GamePlayGamePad.MovGp.performed += Move;
+            //inputAction.GamePlayGamePad.ActionGp.performed += Enter;
+            //inputAction.GamePlayGamePad.MenuGp.performed += OpenMenu;
             inputAction.Enable();
         }
     }
@@ -27,9 +29,9 @@ public class GamePlayPlayerGamePadInput : BaseInput
 
     private void OnDisable()
     {
-        inputAction.GamePlayGamePad.MovGp.performed -= Move;
-        inputAction.GamePlayGamePad.ActionGp.performed -= Enter;
-        inputAction.GamePlayGamePad.MenuGp.performed -= OpenMenu;
+        //inputAction.GamePlayGamePad.MovGp.performed -= Move;
+        //inputAction.GamePlayGamePad.ActionGp.performed -= Enter;
+        //inputAction.GamePlayGamePad.MenuGp.performed -= OpenMenu;
         inputAction.Disable();
     }
 
