@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class GamePadInput : BaseInput
+public class GamePadMenuInput : BaseInput
 {
     private Gamepad gamePad;
 
-    public void InitGamePad(Gamepad _gamePad)
+    private void Awake()
     {
-        gamePad = _gamePad;
         iNPUT = INPUT.GAMEPAD;
     }
 

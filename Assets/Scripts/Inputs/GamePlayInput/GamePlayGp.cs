@@ -1,10 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class GamePlayPlayerGamePadInput : BaseInput
+public class GamePlayGp : BaseInput
 {
     private Gamepad gamePad;
 
@@ -21,7 +20,6 @@ public class GamePlayPlayerGamePadInput : BaseInput
             inputAction.GamePlayGamePad.MovGp.performed += Move;
             inputAction.GamePlayGamePad.ActionGp.performed += Enter;
             inputAction.GamePlayGamePad.MenuGp.performed += StartButton;
-            inputAction.GamePlayGamePad.ActionGp2.performed += SouthAction;
             inputAction.Enable();
         }
     }
@@ -32,7 +30,6 @@ public class GamePlayPlayerGamePadInput : BaseInput
         inputAction.GamePlayGamePad.MovGp.performed -= Move;
         inputAction.GamePlayGamePad.ActionGp.performed -= Enter;
         inputAction.GamePlayGamePad.MenuGp.performed -= StartButton;
-        inputAction.GamePlayGamePad.ActionGp2.performed -= SouthAction;
         inputAction.Disable();
     }
 }

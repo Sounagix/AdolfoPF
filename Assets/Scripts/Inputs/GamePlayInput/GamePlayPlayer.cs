@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody))]
 public class GamePlayPlayer : MonoBehaviour
@@ -25,13 +26,17 @@ public class GamePlayPlayer : MonoBehaviour
         playerInput.SetEnterAction(JumpPlayer);
         playerInput.SetStartAction(StartMovePlayer);
         playerInput.SetEndMoveAction(EndMovePlayer);
+        playerInput.SetStartButtonPressed(StartButtonPressed);
+        playerInput.SetEnterAction2(OnEnterAction2Pressed);
     }
 
     protected virtual void MovePlayer(Vector2 vector)
     {
-        Vector3 dir = new Vector3(vector.x, 0.0f, vector.y);
         if (canMove && MovementAccepted(dir))
+        {
+            dir = new Vector3(vector.x, 0.0f, vector.y);
             rB.AddForce(dir * movSpeed, ForceMode.Impulse);
+        }
     }
 
     protected virtual void StartMovePlayer()
@@ -44,10 +49,20 @@ public class GamePlayPlayer : MonoBehaviour
         canMove = false;
     }
 
+    protected virtual void StartButtonPressed()
+    {
+        print("Abre menu pausa");
+    }
+
     protected virtual void JumpPlayer()
     {
         if(canMove)
             rB.AddForce(jumpSpeed * Vector3.up, ForceMode.Impulse);
+    }
+
+    protected virtual void OnEnterAction2Pressed()
+    {
+        
     }
 
     protected virtual bool MovementAccepted(Vector3 dir)
@@ -62,9 +77,14 @@ public class GamePlayPlayer : MonoBehaviour
 
     private void Update()
     {
-        if (canMove)
-        {
-            rB.velocity = dir * movSpeed;
-        }
+        //if (canMove && dir != Vector3.zero)
+        //{
+        //    rB.velocity = dir * movSpeed;
+        //}
+    }
+
+    public int GetPlayerPosition()
+    {
+        return playerInput.GetIndex();
     }
 }

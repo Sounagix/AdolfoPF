@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
+
+public enum SCENE_TYPE : int
+{
+    GAME_PLAY, MENU
+}
+
 public class InputManager : MonoBehaviour
 {
     // Número máximo de jugadores
@@ -12,7 +18,7 @@ public class InputManager : MonoBehaviour
 
     // Prefabs de los jugadores
     [SerializeField]
-    private GameObject keyboardPlayerPrefab, gamePadPlayerPrefab;
+    private GameObject menuKeyboard, menuGamePad, gamePlayGamePad, gamePlayKeyboard;
 
     // Lista de jugadores creados
     private List<BaseInput> players = new List<BaseInput>();
@@ -42,9 +48,9 @@ public class InputManager : MonoBehaviour
             // Verificar si el dispositivo es un gamepad
             if (device is Gamepad)
             {
-                GameObject gamePadPlayer = Instantiate(gamePadPlayerPrefab);
-                gamePadPlayer.GetComponent<GamePadInput>().InitGamePad(InputSystem.GetDevice<Gamepad>());
-                players.Add(gamePadPlayer.GetComponent<GamePadInput>());
+                //GameObject gamePadPlayer = Instantiate(gamePadPlayerPrefab);
+                //gamePadPlayer.GetComponent<GamePadMenuInput>().InitGamePad(InputSystem.GetDevice<Gamepad>());
+                //players.Add(gamePadPlayer.GetComponent<GamePadMenuInput>());
                 if (device.displayName.Contains("DualShock") || device.displayName.Contains("DualSense"))
                 {
                     Debug.Log("Se ha detectado un gamepad de PlayStation.");
@@ -57,9 +63,9 @@ public class InputManager : MonoBehaviour
             else if (device is Keyboard)
             {
                 Debug.Log("Se encontró un teclado " + device.GetType().Name);
-                GameObject keyboardPlayer = Instantiate(keyboardPlayerPrefab);
-                keyboardPlayer.GetComponent<KeyboadInput>().InitKeyboard(InputSystem.GetDevice<Keyboard>());
-                players.Add(keyboardPlayer.GetComponent<KeyboadInput>());
+                //GameObject keyboardPlayer = Instantiate(keyboardPlayerPrefab);
+                //keyboardPlayer.GetComponent<KeyboadInput>().InitKeyboard(InputSystem.GetDevice<Keyboard>());
+                //players.Add(keyboardPlayer.GetComponent<KeyboadInput>());
             }
             else if (device is Joystick)
             {
@@ -67,22 +73,48 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < InputSystem.devices.Count; i++)
+        //for (int i = 0; i < InputSystem.devices.Count; i++)
+        //{
+        //    switch (InputSystem.devices[i].displayName)
+        //    {
+        //        case "Keyboard":
+
+        //            break;
+        //        case "Xbox Controller":
+
+        //            break;
+        //        case "Joystick":
+        //            players[i] = new JoystickInput();
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+    }
+
+    public void InstanciatePlayers(SCENE_TYPE sCENE_TYPE)
+    {
+        var devices = InputSystem.devices;
+        foreach (var device in devices)
         {
-            switch (InputSystem.devices[i].displayName)
+            if (device is Gamepad)
             {
-                case "Keyboard":
-
-                    break;
-                case "Xbox Controller":
-
-                    break;
-                case "Joystick":
-                    players[i] = new JoystickInput();
-                    break;
-                default:
-                    break;
+                GameObject gamePadPlayer = Instantiate(sCENE_TYPE.Equals(SCENE_TYPE.MENU) ? menuGamePad : gamePlayGamePad);
+                //gamePadPlayer.GetComponent<GamePadMenuInput>().InitGamePad(InputSystem.GetDevice<Gamepad>());
+                players.Add(gamePadPlayer.GetComponent<BaseInput>());
+                players[players.Count - 1].SetIndex(players.Count - 1);
             }
+            else if (device is Keyboard)
+            {
+                GameObject keyboardPlayer = Instantiate(sCENE_TYPE.Equals(SCENE_TYPE.MENU) ? menuKeyboard : gamePlayKeyboard);
+                //keyboardPlayer.GetComponent<KeyboadInput>().InitKeyboard(InputSystem.GetDevice<Keyboard>());
+                players.Add(keyboardPlayer.GetComponent<BaseInput>());
+                players[players.Count - 1].SetIndex(players.Count - 1);
+            }
+            else if (device is Joystick)
+            {
+            }
+            
         }
     }
 

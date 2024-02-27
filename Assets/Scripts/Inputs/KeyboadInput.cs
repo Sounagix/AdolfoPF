@@ -8,9 +8,8 @@ public class KeyboadInput : BaseInput
 
     //private Vector2 movementInput;
 
-    public void InitKeyboard(Keyboard _keyboard)
+    private void Awake()
     {
-        keyboard = _keyboard;
         iNPUT = INPUT.KEYBOARD;
     }
 

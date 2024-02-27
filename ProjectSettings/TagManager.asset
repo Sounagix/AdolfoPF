@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LostZone
   - Platform
+  - Ball
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Ball
+  - Net
   - 
   - 
   - 

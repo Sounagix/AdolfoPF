@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6898960180295785001
+--- !u!1 &8035694034057617395
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 754765442030766321}
-  - component: {fileID: 274791090950347339}
+  - component: {fileID: 3282051242253398780}
+  - component: {fileID: 8521564532461973943}
   m_Layer: 0
-  m_Name: InputManager
+  m_Name: GamePlayGP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &754765442030766321
+--- !u!4 &3282051242253398780
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6898960180295785001}
+  m_GameObject: {fileID: 8035694034057617395}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 913.5232, y: 608.28674, z: -2.621329}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &274791090950347339
+--- !u!114 &8521564532461973943
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6898960180295785001}
+  m_GameObject: {fileID: 8035694034057617395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f801d4c739b55043bb38f4b5e64793a, type: 3}
+  m_Script: {fileID: 11500000, guid: c8a95f8b98ebdb5438d5cdfaafec5a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayers: 4
-  keyboardPlayerPrefab: {fileID: 5575631745466143675, guid: b8a722593e68da04c82524a9c6f9aff4, type: 3}
-  gamePadPlayerPrefab: {fileID: 4956873487347372903, guid: 464a061d1e17fb541af66b499fce42a1, type: 3}
-  gamePlayGamePad: {fileID: 8035694034057617395, guid: 5be6e289789007f478c97975b0870fb1, type: 3}
-  gamePlayKeyboard: {fileID: 4956873487347372903, guid: 464a061d1e17fb541af66b499fce42a1, type: 3}
+  inputActionAsset: {fileID: -944628639613478452, guid: 1c6151ce2c45f2343a878a410c3ad1b5, type: 3}

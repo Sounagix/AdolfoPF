@@ -277,6 +277,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionPc2"",
+                    ""type"": ""Button"",
+                    ""id"": ""559f3efc-842f-4e63-b0ad-7489918fd5e5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -356,6 +365,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""ActionPc"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d39e3e9-4c53-4cb8-bdae-ef9db61b930b"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionPc2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -385,6 +405,15 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""name"": ""ActionGp"",
                     ""type"": ""Button"",
                     ""id"": ""6b4d3e1a-02c8-4ca3-9236-fe0453c9fcbc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ActionGp2"",
+                    ""type"": ""Button"",
+                    ""id"": ""b72ac8c6-1f90-4963-9bc9-a52fa33a84c6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -468,6 +497,17 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
                     ""action"": ""ActionGp"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""65e8a7f2-94de-441e-a936-e869189b3114"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ActionGp2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -500,11 +540,13 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         m_GamePlayTeclado_MenuPc = m_GamePlayTeclado.FindAction("MenuPc", throwIfNotFound: true);
         m_GamePlayTeclado_MovPc = m_GamePlayTeclado.FindAction("MovPc", throwIfNotFound: true);
         m_GamePlayTeclado_ActionPc = m_GamePlayTeclado.FindAction("ActionPc", throwIfNotFound: true);
+        m_GamePlayTeclado_ActionPc2 = m_GamePlayTeclado.FindAction("ActionPc2", throwIfNotFound: true);
         // GamePlayGamePad
         m_GamePlayGamePad = asset.FindActionMap("GamePlayGamePad", throwIfNotFound: true);
         m_GamePlayGamePad_MenuGp = m_GamePlayGamePad.FindAction("MenuGp", throwIfNotFound: true);
         m_GamePlayGamePad_MovGp = m_GamePlayGamePad.FindAction("MovGp", throwIfNotFound: true);
         m_GamePlayGamePad_ActionGp = m_GamePlayGamePad.FindAction("ActionGp", throwIfNotFound: true);
+        m_GamePlayGamePad_ActionGp2 = m_GamePlayGamePad.FindAction("ActionGp2", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -693,6 +735,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlayTeclado_MenuPc;
     private readonly InputAction m_GamePlayTeclado_MovPc;
     private readonly InputAction m_GamePlayTeclado_ActionPc;
+    private readonly InputAction m_GamePlayTeclado_ActionPc2;
     public struct GamePlayTecladoActions
     {
         private @Inputs m_Wrapper;
@@ -700,6 +743,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         public InputAction @MenuPc => m_Wrapper.m_GamePlayTeclado_MenuPc;
         public InputAction @MovPc => m_Wrapper.m_GamePlayTeclado_MovPc;
         public InputAction @ActionPc => m_Wrapper.m_GamePlayTeclado_ActionPc;
+        public InputAction @ActionPc2 => m_Wrapper.m_GamePlayTeclado_ActionPc2;
         public InputActionMap Get() { return m_Wrapper.m_GamePlayTeclado; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -718,6 +762,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ActionPc.started += instance.OnActionPc;
             @ActionPc.performed += instance.OnActionPc;
             @ActionPc.canceled += instance.OnActionPc;
+            @ActionPc2.started += instance.OnActionPc2;
+            @ActionPc2.performed += instance.OnActionPc2;
+            @ActionPc2.canceled += instance.OnActionPc2;
         }
 
         private void UnregisterCallbacks(IGamePlayTecladoActions instance)
@@ -731,6 +778,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ActionPc.started -= instance.OnActionPc;
             @ActionPc.performed -= instance.OnActionPc;
             @ActionPc.canceled -= instance.OnActionPc;
+            @ActionPc2.started -= instance.OnActionPc2;
+            @ActionPc2.performed -= instance.OnActionPc2;
+            @ActionPc2.canceled -= instance.OnActionPc2;
         }
 
         public void RemoveCallbacks(IGamePlayTecladoActions instance)
@@ -755,6 +805,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlayGamePad_MenuGp;
     private readonly InputAction m_GamePlayGamePad_MovGp;
     private readonly InputAction m_GamePlayGamePad_ActionGp;
+    private readonly InputAction m_GamePlayGamePad_ActionGp2;
     public struct GamePlayGamePadActions
     {
         private @Inputs m_Wrapper;
@@ -762,6 +813,7 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         public InputAction @MenuGp => m_Wrapper.m_GamePlayGamePad_MenuGp;
         public InputAction @MovGp => m_Wrapper.m_GamePlayGamePad_MovGp;
         public InputAction @ActionGp => m_Wrapper.m_GamePlayGamePad_ActionGp;
+        public InputAction @ActionGp2 => m_Wrapper.m_GamePlayGamePad_ActionGp2;
         public InputActionMap Get() { return m_Wrapper.m_GamePlayGamePad; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -780,6 +832,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ActionGp.started += instance.OnActionGp;
             @ActionGp.performed += instance.OnActionGp;
             @ActionGp.canceled += instance.OnActionGp;
+            @ActionGp2.started += instance.OnActionGp2;
+            @ActionGp2.performed += instance.OnActionGp2;
+            @ActionGp2.canceled += instance.OnActionGp2;
         }
 
         private void UnregisterCallbacks(IGamePlayGamePadActions instance)
@@ -793,6 +848,9 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
             @ActionGp.started -= instance.OnActionGp;
             @ActionGp.performed -= instance.OnActionGp;
             @ActionGp.canceled -= instance.OnActionGp;
+            @ActionGp2.started -= instance.OnActionGp2;
+            @ActionGp2.performed -= instance.OnActionGp2;
+            @ActionGp2.canceled -= instance.OnActionGp2;
         }
 
         public void RemoveCallbacks(IGamePlayGamePadActions instance)
@@ -845,11 +903,13 @@ public partial class @Inputs: IInputActionCollection2, IDisposable
         void OnMenuPc(InputAction.CallbackContext context);
         void OnMovPc(InputAction.CallbackContext context);
         void OnActionPc(InputAction.CallbackContext context);
+        void OnActionPc2(InputAction.CallbackContext context);
     }
     public interface IGamePlayGamePadActions
     {
         void OnMenuGp(InputAction.CallbackContext context);
         void OnMovGp(InputAction.CallbackContext context);
         void OnActionGp(InputAction.CallbackContext context);
+        void OnActionGp2(InputAction.CallbackContext context);
     }
 }

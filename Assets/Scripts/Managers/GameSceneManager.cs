@@ -6,37 +6,30 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class GameSceneManager : MonoBehaviour
+public class GameSceneManager : MenuManager
 {
     [SerializeField]
     private Button[] buttons;// playButton, optionButton, exitButton;
 
     private int buttonIndex = 0;
 
-    private void OnEnable()
+    private void Awake()
     {
-        InputsActions.menuActionMove += Move;
-        InputsActions.MenuActionEnter += EnterButton;
-        InputsActions.StartActionEnter += StartEnter;
-    }
-
-    private void OnDisable()
-    {
-        InputsActions.menuActionMove -= Move;
-        InputsActions.MenuActionEnter -= EnterButton;
-        InputsActions.StartActionEnter -= StartEnter;
+        SetButtons();
+        InputManager.instance.InstanciatePlayers(SCENE_TYPE.MENU);
+        InitMenu();
     }
 
 
-    private void Move(Vector2 dir)
+    protected override void Move(Vector2 dir)
     {
         if (dir.y > 0)
         {
-            UpMov();
+            DownMov();
         }
         else
         {
-            DownMov();
+            UpMov();
         }
     }
 
@@ -67,10 +60,7 @@ public class GameSceneManager : MonoBehaviour
         buttons[buttonIndex].onClick.Invoke();
     }
 
-    private void Awake()
-    {
-        SetButtons();
-    }
+
 
     private void SetButtons()
     {

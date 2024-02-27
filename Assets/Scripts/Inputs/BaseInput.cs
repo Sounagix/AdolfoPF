@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,9 +22,11 @@ public class BaseInput : MonoBehaviour
 
     protected INPUT iNPUT;
 
+    protected int playerIndexPosition;
+
     protected UnityAction<Vector2> moveAction;
 
-    protected UnityAction enterAction, startAction, openMenuAction, startMoveAction, endMoveAction;
+    protected UnityAction enterAction, startAction, openMenuAction, startMoveAction, endMoveAction, startButtonAction, southAction;
 
     private void OnEnable()
     {
@@ -40,30 +43,19 @@ public class BaseInput : MonoBehaviour
         inputAction.Disable();
     }
 
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-
-    public virtual void StartMove(InputAction.CallbackContext context)
-    {
-        if (canMove)
-            startMoveAction?.Invoke();
-    }
-
-    public virtual void EndMove(InputAction.CallbackContext context)
-    {
-        if (canMove)
-            endMoveAction?.Invoke();
-    }
-
-
     public virtual void Move(InputAction.CallbackContext context)
     {
         if(canMove)
             moveAction?.Invoke(context.ReadValue<Vector2>());
+        if (context.started)
+        {
+            startMoveAction?.Invoke();
+        }
+        else if(context.canceled)
+        {
+            endMoveAction?.Invoke();
+        }
+
         //if (context.performed && canMove)
         //{
         //    InputsActions.menuActionMove?.Invoke(context.ReadValue<Vector2>());
@@ -78,6 +70,12 @@ public class BaseInput : MonoBehaviour
         //{
         //    InputsActions.MenuActionEnter?.Invoke();
         //}
+    }
+
+    public virtual void SouthAction(InputAction.CallbackContext context)
+    {
+        if(canMove)
+            southAction?.Invoke();
     }
 
     public virtual void StartButton(InputAction.CallbackContext context)
@@ -99,6 +97,16 @@ public class BaseInput : MonoBehaviour
         //{
         //    InputsActions.OpenActionMenu?.Invoke();
         //}
+    }
+
+    public void SetIndex(int _index)
+    {
+        playerIndexPosition = _index;
+    }
+
+    public int GetIndex()
+    {
+        return playerIndexPosition;
     }
 
     public void BlockInput()
@@ -144,5 +152,15 @@ public class BaseInput : MonoBehaviour
     public void SetEndMoveAction(UnityAction _EndMoveAction)
     {
         endMoveAction = _EndMoveAction;
+    }
+
+    public void SetStartButtonPressed(UnityAction _startButtonAction)
+    {
+        startButtonAction = _startButtonAction;
+    }
+
+    public void SetEnterAction2(UnityAction _EnterAction2)
+    {
+        southAction = _EnterAction2;
     }
 }

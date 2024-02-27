@@ -255,6 +255,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ActionPc2",
+                    "type": "Button",
+                    "id": "559f3efc-842f-4e63-b0ad-7489918fd5e5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -334,6 +343,17 @@
                     "action": "ActionPc",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d39e3e9-4c53-4cb8-bdae-ef9db61b930b",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionPc2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -363,6 +383,15 @@
                     "name": "ActionGp",
                     "type": "Button",
                     "id": "6b4d3e1a-02c8-4ca3-9236-fe0453c9fcbc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ActionGp2",
+                    "type": "Button",
+                    "id": "b72ac8c6-1f90-4963-9bc9-a52fa33a84c6",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -444,6 +473,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ActionGp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "65e8a7f2-94de-441e-a936-e869189b3114",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActionGp2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
