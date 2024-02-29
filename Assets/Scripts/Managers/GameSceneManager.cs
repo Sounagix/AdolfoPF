@@ -55,11 +55,10 @@ public class GameSceneManager : MenuManager
         print("Start");
     }
 
-    public void EnterButton()
+    protected override void EnterAction()
     {
         buttons[buttonIndex].onClick.Invoke();
     }
-
 
 
     private void SetButtons()

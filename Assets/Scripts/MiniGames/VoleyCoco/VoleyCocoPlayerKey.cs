@@ -6,6 +6,9 @@ public class VoleyCocoPlayerKey : GamePlayPlayer
 {
     private bool onGround;
 
+    [SerializeField]
+    private Animator animator;
+
     //private void OnEnable()
     //{
     //    InputsActions.GamePlayActionMovePC += MovePlayer;
@@ -16,6 +19,15 @@ public class VoleyCocoPlayerKey : GamePlayPlayer
     //    InputsActions.GamePlayActionMovePC -= MovePlayer;
     //    InputsActions.GamePlayActionEnterPC += JumpPlayer;
     //}
+
+    private void Update()
+    {
+        //if (canMove && dir != Vector3.zero)
+        //{
+        //    rB.velocity = dir * movSpeed;
+        //}
+        animator.SetFloat("MovSpeed", Mathf.Abs(rB.velocity.magnitude));
+    }
 
     public override void SetUp(BaseInput _baseInput)
     {
@@ -34,8 +46,10 @@ public class VoleyCocoPlayerKey : GamePlayPlayer
     {
         if (onGround)
         {
+            print("JUMP");
             base.JumpPlayer();
             onGround = false;
+            animator.SetBool("Jump",true);
         }
     }
 
@@ -44,6 +58,7 @@ public class VoleyCocoPlayerKey : GamePlayPlayer
         if (collision.gameObject.CompareTag("Platform"))
         {
             onGround = true;
+            animator.SetBool("Jump", false);
         }
     }
 }

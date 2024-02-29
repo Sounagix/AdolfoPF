@@ -1881,7 +1881,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pcPlayerPrefab: {fileID: 5965390723861449164, guid: 9d8f7b985852994409912275c6d66317, type: 3}
-  gamePadPlayerPrefab: {fileID: 61457903499679131, guid: 8e39c3d0583380f4290ebbbd8c7bcd2e, type: 3}
+  gamePadPlayerPrefab: {fileID: 5965390723861449164, guid: 7b58d0f875d733c4cacdbae3acc44b18, type: 3}
   initPositions:
   - {fileID: 1390666988}
   - {fileID: 505270227}

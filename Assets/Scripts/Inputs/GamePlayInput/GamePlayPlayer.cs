@@ -75,13 +75,7 @@ public class GamePlayPlayer : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void Update()
-    {
-        //if (canMove && dir != Vector3.zero)
-        //{
-        //    rB.velocity = dir * movSpeed;
-        //}
-    }
+
 
     public int GetPlayerPosition()
     {

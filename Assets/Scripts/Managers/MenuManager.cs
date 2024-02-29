@@ -7,6 +7,8 @@ using UnityEngine;
 public static class MenuActions
 {
     public static Action<Vector2> Move;
+    public static Action enterAction;
+    public static Action startAction;
 }
 
 public class MenuManager : MonoBehaviour
@@ -20,6 +22,8 @@ public class MenuManager : MonoBehaviour
     private void OnEnable()
     {
         MenuActions.Move += Move;
+        MenuActions.startAction += StartAction;
+        MenuActions.enterAction+= EnterAction;
     }
 
     protected virtual void InitMenu()
@@ -36,7 +40,7 @@ public class MenuManager : MonoBehaviour
         switch (_baseInput.GetTypeInput())
         {
             case INPUT.KEYBOARD:
-                //InstancePlayer(pcPlayerMenuPrefab, _baseInput);
+                InstancePlayer(pcPlayerMenuPrefab, _baseInput);
                 break;
             case INPUT.GAMEPAD:
                 InstancePlayer(gamePadPlayerMenuPrefab, _baseInput);
@@ -59,6 +63,16 @@ public class MenuManager : MonoBehaviour
     }
 
     protected virtual void Move(Vector2 dir)
+    {
+        
+    }
+
+    protected virtual void EnterAction()
+    {
+
+    }
+
+    protected virtual void StartAction()
     {
 
     }

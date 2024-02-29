@@ -23,11 +23,11 @@ public class MenuPlayerInput : MonoBehaviour
 
     protected virtual void ActionSouth()
     {
-        print("AS");
+        MenuActions.enterAction?.Invoke();
     }
 
     protected virtual void ActionStart()
     {
-        print("START");
+       MenuActions.startAction?.Invoke();
     }
 }
