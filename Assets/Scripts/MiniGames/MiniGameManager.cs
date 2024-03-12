@@ -7,18 +7,18 @@ public class MiniGameManager : MonoBehaviour
 {
 
     [SerializeField]
-    private GameObject pcPlayerPrefab;
+    protected GameObject pcPlayerPrefab;
 
     [SerializeField]
-    private GameObject gamePadPlayerPrefab;
+    protected GameObject gamePadPlayerPrefab;
 
     [SerializeField]
-    private List<Transform> initPositions;
+    protected List<Transform> initPositions;
 
     [SerializeField]
-    private GameObject caniAvatarPrefab;
+    protected GameObject caniAvatarPrefab;
 
-    private List<GamePlayPlayer> players = new List<GamePlayPlayer>();
+    protected List<GamePlayPlayer> players = new List<GamePlayPlayer>();
 
 
     protected virtual void InitMiniGame()

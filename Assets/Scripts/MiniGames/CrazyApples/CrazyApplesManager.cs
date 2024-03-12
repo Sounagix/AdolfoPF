@@ -5,22 +5,10 @@ using UnityEngine;
 public class CrazyApplesManager : MiniGameManager
 {
     [SerializeField]
-    private GameObject pcPlayerPrefab;
-
-    [SerializeField]
-    private GameObject gamePadPlayerPrefab;
-
-    [SerializeField]
-    private List<Transform> initPositions;
-
-    [SerializeField]
-    private GameObject caniAvatarPrefab;
-
-    [SerializeField]
     private CrazyAppleCanvas crazyAppleCanvas;
 
-    private List<GamePlayPlayer> players = new List<GamePlayPlayer>();
-
+    [SerializeField]
+    private Transform center;
 
     private void OnEnable()
     {
@@ -34,6 +22,11 @@ public class CrazyApplesManager : MiniGameManager
 
     public void Awake()
     {
+        InputManager.instance.InstanciatePlayers(SCENE_TYPE.GAME_PLAY);
+    }
+
+    private void Start()
+    {
         InitMiniGame();
     }
 
@@ -44,8 +37,12 @@ public class CrazyApplesManager : MiniGameManager
         currentPlayer.transform.position = initPositions[indexPos].position;
         initPositions.RemoveAt(indexPos);
         GameObject avatar = Instantiate(caniAvatarPrefab);
-        avatar.GetComponent<PlayerAttachment>().InitAvatar(currentPlayer.transform);
+        PlayerAttachment pA = avatar.GetComponent<PlayerAttachment>();
+        pA.InitAvatar(currentPlayer.transform,center);
+        Animator animator = pA.GetAnimator();
         GamePlayPlayer player = currentPlayer.GetComponent<GamePlayPlayer>();
+        player.SetAnimator(animator);
+        player.SetUp(_baseInput);
         //player.IniPlayer(avatar);
         players.Add(player);
     }

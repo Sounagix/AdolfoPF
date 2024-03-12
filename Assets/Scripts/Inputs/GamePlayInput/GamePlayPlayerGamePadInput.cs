@@ -4,35 +4,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class GamePlayPlayerGamePadInput : BaseInput
+public class GamePlayPlayerGamePadInput : GamePlayPlayer
 {
     private Gamepad gamePad;
 
-    private void Awake()
+    private bool onGround = false;
+
+
+    public override void SetUp(BaseInput _baseInput)
     {
-        iNPUT = INPUT.GAMEPAD;
+        base.SetUp(_baseInput);
     }
 
-    private void OnEnable()
+
+    protected override void JumpPlayer()
     {
-        if (inputAction == null)
+        if (onGround)
         {
-            inputAction = new Inputs();
-            inputAction.GamePlayGamePad.MovGp.performed += Move;
-            inputAction.GamePlayGamePad.ActionGp.performed += Enter;
-            inputAction.GamePlayGamePad.MenuGp.performed += StartButton;
-            inputAction.GamePlayGamePad.ActionGp2.performed += SouthAction;
-            inputAction.Enable();
+            base.JumpPlayer();
+            onGround = false;
         }
-    }
-
-
-    private void OnDisable()
-    {
-        inputAction.GamePlayGamePad.MovGp.performed -= Move;
-        inputAction.GamePlayGamePad.ActionGp.performed -= Enter;
-        inputAction.GamePlayGamePad.MenuGp.performed -= StartButton;
-        inputAction.GamePlayGamePad.ActionGp2.performed -= SouthAction;
-        inputAction.Disable();
     }
 }

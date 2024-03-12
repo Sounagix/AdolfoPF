@@ -36,12 +36,16 @@ public class SelectorSceneManager : MenuManager
 
     private int playerIndex = 0;
 
+    private void Awake()
+    {
+        InputManager.instance.InstanciatePlayers(SCENE_TYPE.MENU);
+    }
+
 
     private void Start()
     {
-        InputManager.instance.InstanciatePlayers(SCENE_TYPE.MENU);
-        InitMenu();
         SetButtons();
+        InitMenu();
         ChoosePlayer();
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -80,5 +81,10 @@ public class GamePlayPlayer : MonoBehaviour
     public int GetPlayerPosition()
     {
         return playerInput.GetIndex();
+    }
+
+    public virtual void SetAnimator(Animator animator)
+    {
+       
     }
 }

@@ -94,6 +94,7 @@ public class InputManager : MonoBehaviour
 
     public void InstanciatePlayers(SCENE_TYPE sCENE_TYPE)
     {
+        players.Clear();
         var devices = InputSystem.devices;
         foreach (var device in devices)
         {
@@ -132,4 +133,5 @@ public class InputManager : MonoBehaviour
     {
         return players.ToArray();
     }
+
 }

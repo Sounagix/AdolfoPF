@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43743616, g: 0.4852432, b: 0.5655169, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -149,13 +149,13 @@ Light:
   m_GameObject: {fileID: 1385194}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 1
+  m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_Intensity: 32.76
+  m_Range: 6
+  m_SpotAngle: 88
+  m_InnerSpotAngle: 10
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
@@ -210,13 +210,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1385194}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.6230778, y: -0.19777238, z: 0.16695318, w: 0.7380967}
-  m_LocalPosition: {x: 0, y: 7.06, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 8.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 80.34, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &77320478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,6 +225,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 274791090950347339, guid: 91519afe0fd3936438b4cb02aa6289c0, type: 3}
+      propertyPath: menuGamePad
+      value: 
+      objectReference: {fileID: 4956873487347372903, guid: 464a061d1e17fb541af66b499fce42a1, type: 3}
+    - target: {fileID: 274791090950347339, guid: 91519afe0fd3936438b4cb02aa6289c0, type: 3}
+      propertyPath: menuKeyboard
+      value: 
+      objectReference: {fileID: 5575631745466143675, guid: b8a722593e68da04c82524a9c6f9aff4, type: 3}
+    - target: {fileID: 274791090950347339, guid: 91519afe0fd3936438b4cb02aa6289c0, type: 3}
+      propertyPath: gamePlayKeyboard
+      value: 
+      objectReference: {fileID: 3518172720537430999, guid: 64d37b670a0ac4c46b11a42f5d25c678, type: 3}
     - target: {fileID: 754765442030766321, guid: 91519afe0fd3936438b4cb02aa6289c0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -446,6 +458,7 @@ MonoBehaviour:
   - {fileID: 1775212664}
   caniAvatarPrefab: {fileID: 745578139091395513, guid: ed3ad3867cc634e47a774f84b9bd7e2c, type: 3}
   crazyAppleCanvas: {fileID: 1110398925}
+  center: {fileID: 1069717958}
 --- !u!4 &447184030
 Transform:
   m_ObjectHideFlags: 0
@@ -820,6 +833,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1069717957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1069717958}
+  m_Layer: 0
+  m_Name: Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1069717958
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1069717957}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1350,12 +1394,13 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 77320478}
   - {fileID: 2108591983}
+  - {fileID: 77320478}
+  - {fileID: 447184030}
+  - {fileID: 940252718}
   - {fileID: 563065516}
   - {fileID: 1385196}
   - {fileID: 1098548230}
-  - {fileID: 447184030}
   - {fileID: 1110398924}
   - {fileID: 1714928315}
-  - {fileID: 940252718}
+  - {fileID: 1069717958}

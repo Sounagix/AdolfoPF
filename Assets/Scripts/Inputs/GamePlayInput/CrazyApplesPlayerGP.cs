@@ -11,17 +11,13 @@ public class CrazyApplesPlayerGP : GamePlayPlayer
     [SerializeField]
     protected float repulsiveForce;
 
+    private Animator animator;
 
-    private void OnEnable()
+    public override void SetUp(BaseInput _baseInput)
     {
-        InputsActions.GamePlayActionMoveGP += MovePlayer;
-        InputsActions.GamePlayActionEnterGP += JumpPlayer;
+        base.SetUp(_baseInput);
     }
-    private void OnDisable()
-    {
-        InputsActions.GamePlayActionMoveGP -= MovePlayer;
-        InputsActions.GamePlayActionEnterGP -= JumpPlayer;
-    }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,6 +27,17 @@ public class CrazyApplesPlayerGP : GamePlayPlayer
             // Asignar puntos etc...
             PlayerActions.OnPlayerDie(this);
         }
+    }
+
+    private void LateUpdate()
+    {
+        animator.SetFloat("MovSpeed",Mathf.Abs(rB.velocity.magnitude));
+    }
+
+    protected override void JumpPlayer()
+    {
+        base.JumpPlayer();
+        animator.SetBool("Jump",true);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -57,6 +64,12 @@ public class CrazyApplesPlayerGP : GamePlayPlayer
         if (collision.gameObject.CompareTag("Platform"))
         {
             canMove = false;
+            animator.SetBool("Jump", false);
         }
+    }
+
+    public override void SetAnimator(Animator _animator)
+    {
+        animator = _animator;
     }
 }

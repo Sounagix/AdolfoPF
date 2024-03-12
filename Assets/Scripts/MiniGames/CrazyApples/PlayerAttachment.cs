@@ -9,9 +9,19 @@ public class PlayerAttachment : MonoBehaviour
     [SerializeField]
     private float gapY;
 
-    public void InitAvatar(Transform _ball)
+    private Animator animator;
+
+    private Transform pointToSee;
+
+    private void Awake()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
+
+    public void InitAvatar(Transform _ball,Transform _pointToSee)
     {
         ball = _ball;
+        pointToSee = _pointToSee;
         Vector3 pos = ball.position;
         pos.y = ball.position.y + gapY;
         transform.position = pos;
@@ -21,9 +31,13 @@ public class PlayerAttachment : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 pos = ball.position;
-        pos.y = transform.position.y;
+        pos.y += 0.75f;
         transform.position = pos;
+        transform.LookAt(pointToSee);
     }
 
-
+    public Animator GetAnimator()
+    {
+        return animator;
+    }
 }

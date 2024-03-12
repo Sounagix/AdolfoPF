@@ -19,6 +19,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject gamePadPlayerMenuPrefab;
 
+    // TODO: Borrar esto para hacerlo de forma única para cada manager
     private void OnEnable()
     {
         MenuActions.Move += Move;
