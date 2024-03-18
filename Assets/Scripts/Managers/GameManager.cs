@@ -9,13 +9,26 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public enum SCENE : int
 {
-    MAIN, OPTIONS, SELECTOR, TAB, TUTORIAL, MINIGAME, VICTORY_SCENE, NULL
+    MAIN, OPTIONS, SELECTOR, TAB, TUTORIAL, MINIGAME, VICTORY_SCENE,
+    
+    CRAZY_APPLES, VOLEY_COCO, DESPRENDIMIENTOS,
+    
+    NULL
 };
+
+[Serializable]
+public struct playerData
+{
+    int monedas;
+    int index;
+}
 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+
+    private List<playerData> playerDataList;
 
     private SCENE cURRENT_sCENE;
 
@@ -50,5 +63,15 @@ public class GameManager : MonoBehaviour
         //pREV_sCENE = _pREV;
         cURRENT_sCENE = _sCENE;
         SceneManager.LoadScene((int)_sCENE);
+    }
+
+    public void SavePlayerInfo(List<playerData> _players)
+    {
+        playerDataList = _players;
+    }
+
+    public List<playerData> LoadPlayerInfo()
+    {
+        return playerDataList;
     }
 }
